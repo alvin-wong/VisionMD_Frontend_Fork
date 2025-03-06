@@ -248,13 +248,11 @@ const InteractiveOverlays = ({
 
   // Call the API once dragging is finished.
   const handleLandmarkDragEnd = async () => {
-    // Remove dragging listeners.
     window.removeEventListener('pointermove', handleLandmarkDragMove);
     window.removeEventListener('pointerup', handleLandmarkDragEnd);
     draggingLandmarkRef.current = null;
 
-    // Get the latest landmarks from the ref.
-    const updatedLandmarks = tasksRef.current[selectedTask].data.landMarks;
+   const updatedLandmarks = tasksRef.current[selectedTask].data.landMarks;
     console.log("Upload Data", tasksRef.current[selectedTask].data);
 
     try {
@@ -340,10 +338,10 @@ const InteractiveOverlays = ({
             strokeWidth={strokeThickness}
             fill="none"
             pointerEvents="stroke"
-            onPointerDown={(e) => handleTaskDragStart(e, taskToRender, taskIndex)}
-            style={{ cursor: 'move' }}
+            onPointerDown={(!isPlaying && screen === 'tasks') ? (e) => handleTaskDragStart(e, taskToRender, taskIndex) : undefined}
+            style={{ cursor: (!isPlaying && screen === 'tasks') ? 'move' : 'default' }}
           />
-          {(!isPlaying) && (
+          {(!isPlaying && screen === 'tasks') && (
             <ResizeHandles
               x={taskToRender.x}
               y={taskToRender.y}

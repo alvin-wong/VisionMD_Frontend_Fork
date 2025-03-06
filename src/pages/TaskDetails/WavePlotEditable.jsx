@@ -85,7 +85,6 @@ const WavePlotEditable = ({
 
     const timeUpdateHandler = () => {
       setVideoCurrentTime(videoEl.currentTime);
-      setDataRevision((r) => r + 1);
     };
 
     videoEl.addEventListener('play', playHandler);
@@ -480,11 +479,10 @@ const WavePlotEditable = ({
   return (
     <div
       className="relative flex flex-col items-center pr-8 pl-8 pb-8"
-      style={{ minHeight: '450px' }} // Prevents the overall container from collapsing
     >
       <div
         className="w-full max-w-5xl p-4 bg-white rounded-xl"
-        style={{ minHeight: '400px' }} // Ensures the Plot container always has a minimum height
+        style={{ minHeight: '400px' }}
       >
         <Plot
           ref={plotRef}
@@ -529,7 +527,6 @@ const WavePlotEditable = ({
               mode: 'markers',
               marker: { size: 13, color: '#01FDF6' },
             },
-            // ------------------ NEW TRACES for Pending Points ------------------
             {
               y: tempCycle.valleyStart ? [tempCycle.valleyStart.y] : [],
               x: tempCycle.valleyStart ? [tempCycle.valleyStart.x] : [],
