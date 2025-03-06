@@ -15,7 +15,7 @@ const WavePlotEditable = ({
 
   useEffect(() => {
     setCurrentData(tasks[selectedTaskIndex].data);
-    setRevision((r) => r + 1);
+    setDataRevision((r) => r + 1);
   }, [tasks?.[selectedTaskIndex]?.data, selectedTaskIndex]);
 
   const [videoCurrentTime, setVideoCurrentTime] = useState(startTime);
@@ -34,7 +34,6 @@ const WavePlotEditable = ({
     peak: null,
   });
 
-  // Separate revisions for data and UI to prevent zoom stuttering
   const [dataRevision, setDataRevision] = useState(0);
   const [uiRevision, setUiRevision] = useState("stable");
 
@@ -86,7 +85,6 @@ const WavePlotEditable = ({
 
     const timeUpdateHandler = () => {
       setVideoCurrentTime(videoEl.currentTime);
-      // Only update data revision, not UI revision
       setDataRevision((r) => r + 1);
     };
 
@@ -607,8 +605,8 @@ const WavePlotEditable = ({
                 family: 'Arial, sans-serif',
               },
             },
-            datarevision: revision,
             autosize: true,
+            uirevision: uiRevision,
           }}
           style={{
             width: '100%',
