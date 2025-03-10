@@ -23,14 +23,14 @@ jobs:
           npm install
           npm run build
 
-      - name: Clone backend repository with token
+      - name: Clone backend repository using the token
         run: |
           git clone https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
       - name: Update backend with static files
         run: |
           cd backend-temp
-          # Remove any existing static folder
+          # Remove existing static folder
           rm -rf static
           mv ../dist static
           git checkout -B main-static
