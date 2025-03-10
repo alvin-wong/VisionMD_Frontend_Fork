@@ -9,6 +9,7 @@ const VideoPlayer = () => {
   const [loading, setLoading] = useState(false);
 
   const localURL = 'http://127.0.0.1:8000/api/video';
+  console.log("Hello World");
 
   useEffect(() => {}, [stats]);
   const handleVideoChange = event => {
