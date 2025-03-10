@@ -35,6 +35,7 @@ jobs:
           git checkout -B main-static
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git"
           git add static
           git commit -m "Automated: Update frontend build"
-          git push https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git main-static
+          git push origin main-static --force
