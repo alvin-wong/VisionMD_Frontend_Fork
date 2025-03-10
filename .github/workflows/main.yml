@@ -23,19 +23,19 @@ jobs:
           npm install
           npm run build
 
-      - name: Checkout backend repository
+      - name: Clone backend repository with token
         run: |
-          git clone https://github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
-          rm -rf backend-temp/static
-          mv dist backend-temp/static
+          git clone https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
-      - name: Push updated frontend to backend repo
+      - name: Update backend with static files
         run: |
           cd backend-temp
+          # Remove any existing static folder
+          rm -rf static
+          mv ../dist static
           git checkout -B main-static
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin "https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git"
           git add static
-          git commit -m "Automated: Update frontend build"
-          git push origin main-static --force
+          git commit -m "Automated: Update frontend build" || echo "No changes to commit"
+          git push origin main-static
