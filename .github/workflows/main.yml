@@ -27,7 +27,7 @@ jobs:
         run: |
           git clone https://github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
           rm -rf backend-temp/static
-          mv build backend-temp/static
+          mv dist backend-temp/static
 
       - name: Push updated frontend to backend repo
         run: |
