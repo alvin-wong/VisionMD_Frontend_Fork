@@ -13,23 +13,25 @@ jobs:
       - name: Checkout frontend repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install dependencies and build frontend
+      - name: Debug - Show Secret Availability
         run: |
-          npm install
-          npm run build
+          if [ -z "${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}" ]; then
+            echo "ERROR: Secret is not available!"
+            exit 1
+          else
+            echo "Secret is available (value hidden for security)"
+          fi
 
-      - name: Clone backend repository using the token
+      - name: Clone backend repository
         run: |
+          echo "Attempting clone from: https://alvin-wong:***@github.com/alvin-wong/VisionMD_Backend_Fork.git"
           git clone https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
-      - name: Update backend with static files
+      - name: Update backend
         run: |
           cd backend-temp
+          echo "Remote URL: $(git config --get remote.origin.url)"
+          git remote -vv
           git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
           rm -rf static
           mv ../dist static
