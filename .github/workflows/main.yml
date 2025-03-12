@@ -30,7 +30,7 @@ jobs:
       - name: Update backend with static files
         run: |
           cd backend-temp
-          git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
+          git remote set-url origin https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
           rm -rf static
           mv ../dist static
           git checkout -B main-static
