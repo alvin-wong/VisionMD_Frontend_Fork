@@ -11,7 +11,6 @@ function App() {
       <Route path="/" element={<WrapperPage page={SubjectResolution} />} />
       <Route path="/subjects" element={<SubjectResolution />} />
       <Route path="/tasks" element={<TaskSelection />} />
-      <Route path="/old" element={<VideoAnalysis />} />
       <Route path="/tasksInfo" element={<TasksInfoPage />} />
     </Routes>
   );
