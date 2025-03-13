@@ -51,7 +51,7 @@ jobs:
       - name: Clone backend repository
         run: |
           echo "Attempting clone from: https://alvin-wong:***@github.com/alvin-wong/VisionMD_Backend_Fork.git"
-          git clone https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
+          git clone https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
       - name: Update backend
         run: |
@@ -65,5 +65,5 @@ jobs:
           cp -r ../static/ ./
           git add .
           git commit -m "Automated: Update frontend build" || echo "No changes to commit"
-          git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
+          git remote set-url origin https://x-access-token:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
           git push
