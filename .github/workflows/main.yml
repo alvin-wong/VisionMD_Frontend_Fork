@@ -39,6 +39,8 @@ jobs:
           else
             echo "No CSS file found"
           fi
+
+          cp dist/favicon.ico static
           
       - name: Clone backend repository
         run: |
