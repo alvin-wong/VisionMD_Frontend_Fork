@@ -25,7 +25,7 @@ jobs:
       - name: Clone backend repository
         run: |
           echo "Cloning backend repo..."
-          git clone https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
+          git clone https://github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
       - name: Create and push text file to backend
         run: |
