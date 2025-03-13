@@ -42,7 +42,6 @@ jobs:
           git add .
           git commit -m "Automated: Update frontend build" || echo "No changes to commit"
           
-          git config --unset credential.helper
           git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
       
       - name: Pushing
