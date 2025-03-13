@@ -14,11 +14,9 @@ jobs:
 
     steps:
       - name: Checkout frontend repository
-        run: |
-          git init
-          git remote add origin https://github.com/alvin-wong/VisionMD_Frontend_Fork.git
-          git fetch origin main
-          git checkout main
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
           
       - name: Clone backend repository
         run: |
