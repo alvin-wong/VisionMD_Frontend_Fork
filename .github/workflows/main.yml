@@ -33,7 +33,7 @@ jobs:
           git checkout main-static
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          echo "This is a test file created by GitHub Actions." > test.txt
+          echo "This is a test file created by GitHub Actions. " > test.txt
           git add .
           git commit -m "Automated: Add test text file" || echo "No changes to commit"
           git config --unset credential.helper
