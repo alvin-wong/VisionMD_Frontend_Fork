@@ -1,4 +1,4 @@
-name: Build and Deploy Frontend to Backend Repo
+name: Create and Push Test File to Backend Repo
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  create-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,20 +24,16 @@ jobs:
 
       - name: Clone backend repository
         run: |
-          echo "Attempting clone from: https://alvin-wong:***@github.com/alvin-wong/VisionMD_Backend_Fork.git"
+          echo "Cloning backend repo..."
           git clone https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git backend-temp
 
-      - name: Update backend
+      - name: Create and push text file to backend
         run: |
           cd backend-temp
-          echo "Remote URL: $(git config --get remote.origin.url)"
-          git remote -vv
-          git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
-          rm -rf static
-          mv ../dist static
-          git checkout -B main-static
+          git checkout -B test-text
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add static
-          git commit -m "Automated: Update frontend build" || echo "No changes to commit"
-          git push --set-upstream origin main-static
+          echo "This is a test file created by GitHub Actions." > test.txt
+          git add test.txt
+          git commit -m "Automated: Add test text file" || echo "No changes to commit"
+          git push origin main-static
