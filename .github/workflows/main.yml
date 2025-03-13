@@ -24,6 +24,7 @@ jobs:
 
       - name: Install dependencies and build frontend
         run: |
+          #test
           npm install
           npm run build
 
