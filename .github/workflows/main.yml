@@ -41,6 +41,7 @@ jobs:
           fi
 
           cp dist/favicon.ico static
+          cp dist/*.png static
           
       - name: Clone backend repository
         run: |
