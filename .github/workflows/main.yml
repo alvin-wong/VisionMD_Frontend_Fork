@@ -22,7 +22,23 @@ jobs:
         run: |
           npm install
           npm run build
-          mv dist static
+
+          mkdir -p static/js static/css
+          
+          JS_FILE=$(find dist/assets -name "*.js" | head -n 1)
+          CSS_FILE=$(find dist/assets -name "*.css" | head -n 1)
+
+          if [ -f "$JS_FILE" ]; then
+            mv "$JS_FILE" static/js/main.js
+          else
+            echo "No JS file found"
+          fi
+
+          if [ -f "$CSS_FILE" ]; then
+            mv "$CSS_FILE" static/css/main.css
+          else
+            echo "No CSS file found"
+          fi
           
       - name: Clone backend repository
         run: |
@@ -38,7 +54,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
           rm -rf static
-          cp -r ../static .
+          cp -r ../static/ ./
           git add .
           git commit -m "Automated: Update frontend build" || echo "No changes to commit"
           git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
