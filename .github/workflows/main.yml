@@ -36,4 +36,4 @@ jobs:
           echo "This is a test file created by GitHub Actions." > test.txt
           git add test.txt
           git commit -m "Automated: Add test text file" || echo "No changes to commit"
-          git push origin main-static
+          git push origin test-text main-static
