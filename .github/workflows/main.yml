@@ -33,17 +33,15 @@ jobs:
       - name: Update backend
         run: |
           cd backend-temp
-          echo "Remote URL: $(git config --get remote.origin.url)"
-          git remote -vv
-          git remote set-url origin https://github.com/alvin-wong/VisionMD_Backend_Fork.git
-          rm -rf static
-          mv ../dist static
-          git checkout -B main-static
+          git checkout main-static
+          
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
           
+          echo "This is a test file created by GitHub Actions." > test.txt
+          git add .
           git commit -m "Automated: Update frontend build" || echo "No changes to commit"
+          
           git config --unset credential.helper
           git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
           git push
