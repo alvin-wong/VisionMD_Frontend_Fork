@@ -18,8 +18,8 @@ jobs:
           git init
           git remote add origin https://github.com/alvin-wong/VisionMD_Frontend_Fork.git
           git fetch origin main
-          git checkout main origin/main
-
+          git checkout main
+          
       - name: Clone backend repository
         run: |
           echo "Attempting clone from: https://alvin-wong:***@github.com/alvin-wong/VisionMD_Backend_Fork.git"
