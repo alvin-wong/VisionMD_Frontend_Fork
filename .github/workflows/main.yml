@@ -36,5 +36,6 @@ jobs:
           echo "This is a test file created by GitHub Actions." > test.txt
           git add .
           git commit -m "Automated: Add test text file" || echo "No changes to commit"
+          git config --unset-all credential.helper
           git remote set-url origin https://alvin-wong:${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}@github.com/alvin-wong/VisionMD_Backend_Fork.git
           git push origin main-static
