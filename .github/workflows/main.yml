@@ -14,16 +14,11 @@ jobs:
 
     steps:
       - name: Checkout frontend repository
-        uses: actions/checkout@v3
-
-      - name: Debug - Show Secret Availability
         run: |
-          if [ -z "${{ secrets.VISIONMD_BACKEND_DEPLOY_TOKEN }}" ]; then
-            echo "ERROR: Secret is not available!"
-            exit 1
-          else
-            echo "Secret is available (value hidden for security)"
-          fi
+          git init
+          git remote add origin https://github.com/alvin-wong/VisionMD_Frontend_Fork.git
+          git fetch origin main
+          git checkout main origin/main
 
       - name: Clone backend repository
         run: |
