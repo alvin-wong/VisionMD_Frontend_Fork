@@ -30,7 +30,7 @@ jobs:
       - name: Create and push text file to backend
         run: |
           cd backend-temp
-          git checkout -B test-text
+          git checkout main-static
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           echo "This is a test file created by GitHub Actions." > test.txt
